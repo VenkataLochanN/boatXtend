@@ -1,0 +1,50 @@
+package com.ido.common.net;
+
+/* JADX INFO: loaded from: classes2.dex */
+public class ErrorCode {
+    public static final int ACCOUNT_ALREADY_EXISTS = 100040;
+    public static final int ACCOUNT_TOKEN_NOT_SAME = 200109;
+    public static final int APP_INFO_NOT_FIND = 200306;
+    public static final int APP_VERSION_NOT_FIND = 200305;
+    public static final int CANCELLATION_FAILED = 100020;
+    public static final int CODE_CREATE_FILE_ERROR = -2;
+    public static final int CODE_FILE_NOT_EXIT = -1;
+    public static final int CODE_WRITE_FILE_ERROR = -3;
+    public static final int DATE_CHANGE_ERROR = 601;
+    public static final int DEVICE_IS_DISMOUNT = 502004;
+    public static final int DEVICE_NOT_EXIST = 502003;
+    public static final int DEVICE_UNBIND_ERROR = 503001;
+    public static final int GET_REGISTER_SYSTEM_ACCOUNT_FAILED = 100070;
+    public static final int INVALIDATE_TOKEN = 201010;
+    public static final int LOGIN_FAILED = 100030;
+    public static final int NO_ACCESS_VISIT_RESOURCE = 201013;
+    public static final int OTA_DEVICE_NOT_EXIST = 501001;
+    public static final int OTA_INFO_NOT_EXIST = 10404;
+    public static final int OTA_VERSION_NOT_EXIST = 502001;
+    public static final int PASSWORD_CAN_NOT_EMPTY = 200409;
+    public static final int REGISTER_FAILED = 100010;
+    public static final int REGISTER_SYSTEM_ACCOUNT_WRONG = 100080;
+    public static final int REGISTER_SYSTEM_NOT_EXIST = 100060;
+    public static final int REQUEST_NOT_RECOGNIZED = 400;
+    public static final int REQUEST_PARAMATER_ERROR = 502;
+    public static final int SERVER_ERROR = 500;
+    public static final int SHORT_MESSAGE_ERROR_REPEAT = 200401;
+    public static final int SHORT_MESSAGE_NOT_EXISTS = 200404;
+    public static final int SUCCESS = 200;
+    public static final int TOKEN_EXPIRED = 201012;
+    public static final int TOKEN_NOT_RECOGNIZED = 403;
+    public static final int USER_ACCOUNT_EXISTED = 200101;
+    public static final int USER_CODE_ACCOUNT_NOT_EMPTY = 200407;
+    public static final int USER_CODE_ERROR = 200402;
+    public static final int USER_CODE_NOT_SUPPORT = 200403;
+    public static final int USER_INFO_NOT_EXISTS = 200106;
+    public static final int USER_LOGIN_ERR_ACCPSW = 200104;
+    public static final int USER_LOGIN_NOT_MODIFY_ACCPSW = 200105;
+    public static final int USER_LOGIN_OTHER_PHONE = 201000;
+    public static final int USER_NOT_EXISTS = 200103;
+    public static final int USER_PASSWORD_WRONG = 201011;
+    public static final int VCODE_WRONG_OVER = 200405;
+    public static final int VCODE_WRONG_OVER_USERED = 200406;
+    public static final int WHITE_LIST_NOT_CONFIGURE = 501011;
+    public static final int WHITE_LIST_NOT_EXIST = 501012;
+}

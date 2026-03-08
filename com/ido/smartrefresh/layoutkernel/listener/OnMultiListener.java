@@ -1,0 +1,23 @@
+package com.ido.smartrefresh.layoutkernel.listener;
+
+import com.ido.smartrefresh.layoutkernel.api.RefreshFooter;
+import com.ido.smartrefresh.layoutkernel.api.RefreshHeader;
+
+/* JADX INFO: loaded from: classes3.dex */
+public interface OnMultiListener extends OnRefreshLoadMoreListener, OnStateChangedListener {
+    void onFooterFinish(RefreshFooter refreshFooter, boolean z);
+
+    void onFooterMoving(RefreshFooter refreshFooter, boolean z, float f2, int i, int i2, int i3);
+
+    void onFooterReleased(RefreshFooter refreshFooter, int i, int i2);
+
+    void onFooterStartAnimator(RefreshFooter refreshFooter, int i, int i2);
+
+    void onHeaderFinish(RefreshHeader refreshHeader, boolean z);
+
+    void onHeaderMoving(RefreshHeader refreshHeader, boolean z, float f2, int i, int i2, int i3);
+
+    void onHeaderReleased(RefreshHeader refreshHeader, int i, int i2);
+
+    void onHeaderStartAnimator(RefreshHeader refreshHeader, int i, int i2);
+}

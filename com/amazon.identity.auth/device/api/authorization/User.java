@@ -1,0 +1,139 @@
+package com.amazon.identity.auth.device.api.authorization;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.amazon.identity.auth.device.AuthError;
+import com.amazon.identity.auth.device.api.Listener;
+import com.amazon.identity.auth.device.authorization.InternalAuthManager;
+import com.amazon.identity.auth.device.authorization.api.AuthzConstants;
+import com.amazon.identity.auth.device.shared.APIListener;
+import com.amazon.identity.auth.device.utils.LWAConstants;
+import com.amazon.identity.auth.map.device.utils.MAPLog;
+import java.util.HashMap;
+import java.util.Map;
+
+/* JADX INFO: loaded from: classes.dex */
+public final class User implements Parcelable {
+    private final Map<String, String> userInfo;
+    private static final String LOG_TAG = User.class.getName();
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() { // from class: com.amazon.identity.auth.device.api.authorization.User.1
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public User createFromParcel(Parcel parcel) {
+            return new User(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public User[] newArray(int i) {
+            return new User[i];
+        }
+    };
+
+    @Override // android.os.Parcelable
+    public int describeContents() {
+        return 0;
+    }
+
+    User(Map<String, String> map) {
+        this.userInfo = map;
+    }
+
+    private User(Parcel parcel) {
+        this.userInfo = new HashMap();
+        int i = parcel.readInt();
+        for (int i2 = 0; i2 < i; i2++) {
+            this.userInfo.put(parcel.readString(), parcel.readString());
+        }
+    }
+
+    public static void fetch(Context context, Listener<User, AuthError> listener) {
+        fetch(context, InternalAuthManager.getInstance(context), listener);
+    }
+
+    static void fetch(Context context, InternalAuthManager internalAuthManager, final Listener<User, AuthError> listener) {
+        MAPLog.i(LOG_TAG, context.getPackageName() + " calling fetch");
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(LWAConstants.PROFILE_BUNDLE_KEY.FAIL_ON_INSUFFICIENT_SCOPE.val, true);
+        internalAuthManager.getProfile(context, bundle, new APIListener() { // from class: com.amazon.identity.auth.device.api.authorization.User.2
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // com.amazon.identity.auth.device.api.Listener
+            public void onSuccess(Bundle bundle2) {
+                listener.onSuccess(User.userFromBundle(bundle2.getBundle(AuthzConstants.BUNDLE_KEY.PROFILE.val)));
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // com.amazon.identity.auth.device.api.Listener
+            public void onError(AuthError authError) {
+                listener.onError(authError);
+            }
+        });
+    }
+
+    public String getUserId() {
+        return this.userInfo.get(AuthzConstants.PROFILE_KEY.USER_ID.val);
+    }
+
+    public String getUserName() {
+        return this.userInfo.get(AuthzConstants.PROFILE_KEY.NAME.val);
+    }
+
+    public String getUserEmail() {
+        return this.userInfo.get(AuthzConstants.PROFILE_KEY.EMAIL.val);
+    }
+
+    public String getUserPostalCode() {
+        return this.userInfo.get(AuthzConstants.PROFILE_KEY.POSTAL_CODE.val);
+    }
+
+    public Map<String, String> getUserInfo() {
+        return this.userInfo;
+    }
+
+    public int hashCode() {
+        Map<String, String> map = this.userInfo;
+        return 31 + (map == null ? 0 : map.hashCode());
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        User user = (User) obj;
+        Map<String, String> map = this.userInfo;
+        if (map == null) {
+            if (user.userInfo != null) {
+                return false;
+            }
+        } else if (!map.equals(user.userInfo)) {
+            return false;
+        }
+        return true;
+    }
+
+    public String toString() {
+        return String.format("%s={userInfo=%s}", super.toString(), this.userInfo);
+    }
+
+    static User userFromBundle(Bundle bundle) {
+        HashMap map = new HashMap(bundle.size());
+        for (String str : bundle.keySet()) {
+            map.put(str, bundle.getString(str));
+        }
+        return new User(map);
+    }
+
+    @Override // android.os.Parcelable
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(this.userInfo.size());
+        for (Map.Entry<String, String> entry : this.userInfo.entrySet()) {
+            parcel.writeString(entry.getKey());
+            parcel.writeString(entry.getValue());
+        }
+    }
+}

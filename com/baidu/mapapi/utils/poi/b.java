@@ -1,0 +1,42 @@
+package com.baidu.mapapi.utils.poi;
+
+import com.baidu.mapapi.http.HttpClient;
+import com.baidu.platform.comapi.pano.PanoStateError;
+
+/* JADX INFO: loaded from: classes.dex */
+/* synthetic */ class b {
+
+    /* JADX INFO: renamed from: a, reason: collision with root package name */
+    static final /* synthetic */ int[] f3378a;
+
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    static final /* synthetic */ int[] f3379b = new int[HttpClient.HttpStateError.values().length];
+
+    static {
+        try {
+            f3379b[HttpClient.HttpStateError.NETWORK_ERROR.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            f3379b[HttpClient.HttpStateError.INNER_ERROR.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        f3378a = new int[PanoStateError.values().length];
+        try {
+            f3378a[PanoStateError.PANO_UID_ERROR.ordinal()] = 1;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            f3378a[PanoStateError.PANO_NOT_FOUND.ordinal()] = 2;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            f3378a[PanoStateError.PANO_NO_TOKEN.ordinal()] = 3;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            f3378a[PanoStateError.PANO_NO_ERROR.ordinal()] = 4;
+        } catch (NoSuchFieldError unused6) {
+        }
+    }
+}
