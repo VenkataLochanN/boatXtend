@@ -1,0 +1,2 @@
+1. ghidra_12.0.4_PUBLIC_20260303
+2. jadx-gui-1.5.5-with-jre-win
